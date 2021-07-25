@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var DIRTY_PREFIX = 'dirtyindex:'; // tag names are always all lowercase
 var DIRTY_REGEX = /dirtyindex:(\d+):/;
+var RADIX = 10;
 var html = function (strings) {
   var _a, _b;
   var args = [];
@@ -19,7 +20,7 @@ var html = function (strings) {
     })
     .join('');
   function replaceSubstitution(match, index) {
-    return args[parseInt(index, 10)];
+    return args[parseInt(index, RADIX)];
   }
   function replaceAttribute(name, value, element) {
     if (typeof value === 'function') {
@@ -32,7 +33,7 @@ var html = function (strings) {
   var walker = document.createNodeIterator(template.content, NodeFilter.SHOW_ALL);
   var node;
   while ((node = walker.nextNode())) {
-    if (node.nodeType === 3 && ((_a = node.nodeValue) === null || _a === void 0 ? void 0 : _a.includes(DIRTY_PREFIX))) {
+    if (node.nodeType === Node.TEXT_NODE && ((_a = node.nodeValue) === null || _a === void 0 ? void 0 : _a.includes(DIRTY_PREFIX))) {
       node.nodeValue = node.nodeValue.replace(DIRTY_REGEX, replaceSubstitution);
       continue;
     }
@@ -45,7 +46,7 @@ var html = function (strings) {
       if (name_1 && value.includes(DIRTY_PREFIX)) {
         var match = DIRTY_REGEX.exec(value);
         if (!match) continue;
-        value = args[parseInt(match[1], 10)];
+        value = args[parseInt(match[1], RADIX)];
         replaceAttribute(name_1, value, node);
       }
     }
