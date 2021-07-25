@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var DIRTY_PREFIX = 'dirtyindex:'; // tag names are always all lowercase
 var DIRTY_REGEX = /dirtyindex:(\d+):/;
+var DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
 var RADIX = 10;
 var html = function (strings) {
   var _a, _b;
@@ -34,7 +35,7 @@ var html = function (strings) {
   var node;
   while ((node = walker.nextNode())) {
     if (node.nodeType === Node.TEXT_NODE && ((_a = node.nodeValue) === null || _a === void 0 ? void 0 : _a.includes(DIRTY_PREFIX))) {
-      node.nodeValue = node.nodeValue.replace(DIRTY_REGEX, replaceSubstitution);
+      node.nodeValue = node.nodeValue.replace(DIRTY_REGEX_G, replaceSubstitution);
       continue;
     }
     node = node;

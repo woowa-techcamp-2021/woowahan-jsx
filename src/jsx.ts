@@ -1,5 +1,6 @@
 const DIRTY_PREFIX = 'dirtyindex:'; // tag names are always all lowercase
 const DIRTY_REGEX = /dirtyindex:(\d+):/;
+const DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
 const RADIX = 10;
 
 const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement | DocumentFragment | ChildNode => {
@@ -32,7 +33,7 @@ const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement | Docu
   let node;
   while ((node = walker.nextNode())) {
     if (node.nodeType === Node.TEXT_NODE && node.nodeValue?.includes(DIRTY_PREFIX)) {
-      node.nodeValue = node.nodeValue.replace(DIRTY_REGEX, replaceSubstitution);
+      node.nodeValue = node.nodeValue.replace(DIRTY_REGEX_G, replaceSubstitution);
       continue;
     }
 
