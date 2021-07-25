@@ -7,8 +7,11 @@
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html"
   },
+  "alias": {
+    "src": "./src"
+  },
   "repository": "git+https://github.com/woowa-techcamp-2021/woowahan-jsx.git",
-  "author": "cothis <minho1030@naver.com>",
+  "author": "오인규, 윤민호",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/woowa-techcamp-2021/woowahan-jsx/issues"
