@@ -1,0 +1,2 @@
+const welcome = 'hihi';
+console.log(welcome);

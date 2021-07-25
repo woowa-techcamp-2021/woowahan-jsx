@@ -2,9 +2,10 @@
   "name": "woowahan-jsx",
   "version": "1.0.0",
   "description": "Yet Another Simple JSX using tagged template",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "repository": "git+https://github.com/woowa-techcamp-2021/woowahan-jsx.git",
   "author": "cothis <minho1030@naver.com>",
