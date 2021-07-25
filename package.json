@@ -1,0 +1,26 @@
+{
+  "name": "woowahan-jsx",
+  "version": "1.0.0",
+  "description": "Yet Another Simple JSX using tagged template",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "alias": {
+    "src": "./src"
+  },
+  "repository": "git+https://github.com/woowa-techcamp-2021/woowahan-jsx.git",
+  "author": "오인규, 윤민호",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woowa-techcamp-2021/woowahan-jsx/issues"
+  },
+  "homepage": "https://github.com/woowa-techcamp-2021/woowahan-jsx#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  },
+  "dependencies": {
+    "typescript": "^4.3.5"
+  }
+}
