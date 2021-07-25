@@ -1,3 +1,16 @@
-const welcome: string = 'hihi';
+import html from "./jsx";
 
-console.log(welcome);
+const hello = "hello";
+const myComponent = html`
+  <div
+    class="${hello}"
+    onClick=${() => {
+      alert(hello);
+    }}
+  >
+    <span>${hello}</span>
+    <span></span>
+  </div>
+`;
+
+document.body.appendChild(myComponent);
