@@ -1,0 +1,19 @@
+{
+  "name": "woowahan-jsx",
+  "version": "1.0.0",
+  "description": "Yet Another Simple JSX using tagged template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woowa-techcamp-2021/woowahan-jsx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woowa-techcamp-2021/woowahan-jsx/issues"
+  },
+  "homepage": "https://github.com/woowa-techcamp-2021/woowahan-jsx#readme"
+}
