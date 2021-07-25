@@ -49,3 +49,9 @@ function render() {
 
 render();
 ```
+
+## Install
+
+/src/jsx.ts를 copy & paste 해서 쓰세요!
+
+/src/jsx.js를 copy & paste 해서 쓰세요!
