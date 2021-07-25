@@ -29,7 +29,7 @@ function render() {
       <button
         class="btn"
         onClick=${() => {
-          setCounter(counter + 1);
+          setCounter(state.counter + 1);
         }}
       >
         +
@@ -37,7 +37,7 @@ function render() {
       <button
         class="btn"
         onClick=${() => {
-          setCounter(counter - 1);
+          setCounter(state.counter - 1);
         }}
       >
         -
