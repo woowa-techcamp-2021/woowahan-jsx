@@ -1,6 +1,8 @@
 import html from './jsx';
 
 const hello = 'hello';
+const world = 'world';
+
 const myComponent = html`
   <div
     class="${hello}"
@@ -8,7 +10,7 @@ const myComponent = html`
       alert(hello);
     }}
   >
-    <span>${hello}</span>
+    <span>${hello} ${world}</span>
     <span></span>
   </div>
 `;
