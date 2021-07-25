@@ -4,7 +4,7 @@ Yet Another Simple JSX using tagged template
 
 ## 장점
 
-스트링 말고 함수나 객체를 넘길 수 있어요!! ^0^
+스트링뿐만 아니라 함수나 객체도 ${}에 넘길 수 있어요!! ^0^
 
 Prettier로 포매팅이 자동으로 됩니다.
 
@@ -25,7 +25,7 @@ const setCounter = val => {
 const containerClassName = 'counter-wrapper';
 
 function render() {
-  const $app = document.querySelecotr('#app');
+  const $app = document.querySelector('#app');
   const myComponent = html`
     <div class="${containerClassName}">
       <button
