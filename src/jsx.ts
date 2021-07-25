@@ -1,6 +1,5 @@
 const SUBSTITUTION_INDEX = 'substitutionindex:'; // tag names are always all lowercase
-const SUBSTITUTION_REGEX = new RegExp(SUBSTITUTION_INDEX + '(d+):', 'g');
-const re = /substitutionindex:(\d+):/;
+const SUBSTITUTION_REGEX = /substitutionindex:(\d+):/;
 
 const html = (strings: TemplateStringsArray, ...values: any[]): HTMLElement | DocumentFragment | ChildNode => {
   if (!strings[0] && values.length) {
@@ -15,46 +14,51 @@ const html = (strings: TemplateStringsArray, ...values: any[]): HTMLElement | Do
   let template = document.createElement('template');
   template.innerHTML = str;
 
-  console.log(template.outerHTML);
+  // console.log(template.outerHTML);
+  /**
+   * Replace a string with substitution placeholders with its substitution values.
+   * @private
+   *
+   * @param {string} match - Matched substitution placeholder.
+   * @param {string} index - Substitution placeholder index.
+   */
+  function replaceSubstitution(match: string, index: string) {
+    return values[parseInt(index, 10)];
+  }
+
   let walker = document.createNodeIterator(template.content, NodeFilter.SHOW_ALL);
   let node;
-  while ((node = walker.nextNode() as Element)) {
-    let tag = null;
-    let attributesToRemove = [];
+  while ((node = walker.nextNode())) {
+    if (node.nodeType === 3 && node.nodeValue?.includes(SUBSTITUTION_INDEX)) {
+      node.nodeValue = node.nodeValue.replace(SUBSTITUTION_REGEX, replaceSubstitution);
+      continue;
+    }
 
-    let nodeName = node.nodeName.toLowerCase();
+    const element = <HTMLElement>node;
 
     let attributes: Attr[] = [];
-    if (node.attributes) {
-      attributes = Array.from(node.attributes);
+    if (element.attributes) {
+      attributes = Array.from(element.attributes);
     }
 
     for (let i = 0; i < attributes.length; i++) {
       let attribute = attributes[i];
       let { name, value } = attribute;
-      let hasSubstitution = false;
 
       if (name && value.includes(SUBSTITUTION_INDEX)) {
-        // console.log(nodeName);
-        // console.log(name);
-
-        const match = re.exec(value);
+        const match = SUBSTITUTION_REGEX.exec(value);
         if (match) {
-          console.log(match);
           value = values[parseInt(match[1], 10)];
-          console.log(value);
-        }
-
-        console.log(typeof value, value);
-        if (typeof value === 'function' && match) {
-          (node as HTMLElement).addEventListener(name.replace('on', '').toLowerCase(), value);
-          (node as HTMLElement).removeAttribute(name);
+          if (typeof value === 'function') {
+            element.addEventListener(name.replace('on', '').toLowerCase(), value);
+            element.removeAttribute(name);
+          } else if (typeof value === 'string') {
+            element.setAttribute(name, value);
+          }
         }
       }
     }
   }
-
-  console.log(values);
 
   return template.content;
 };
