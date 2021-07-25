@@ -6,6 +6,8 @@ Yet Another Simple JSX using tagged template
 
 스트링 말고 함수나 객체를 넘길 수 있어요!! ^0^
 
+Prettier로 포매팅이 자동으로 됩니다.
+
 ## Example
 
 ```ts
