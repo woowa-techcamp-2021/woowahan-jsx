@@ -1,6 +1,6 @@
-import html from "./jsx";
+import html from './jsx';
 
-const hello = "hello";
+const hello = 'hello';
 const myComponent = html`
   <div
     class="${hello}"
