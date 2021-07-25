@@ -11,6 +11,8 @@ Prettier로 포매팅이 자동으로 됩니다.
 ## Example
 
 ```ts
+import html from './src/jsx';
+
 const state = {
   counter: 0,
 };
