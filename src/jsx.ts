@@ -1,61 +1,51 @@
-const SUBSTITUTION_INDEX = 'substitutionindex:'; // tag names are always all lowercase
-const SUBSTITUTION_REGEX = /substitutionindex:(\d+):/;
+const DIRTY_PREFIX = 'dirtyindex:'; // tag names are always all lowercase
+const DIRTY_REGEX = /dirtyindex:(\d+):/;
 
-const html = (strings: TemplateStringsArray, ...values: any[]): HTMLElement | DocumentFragment | ChildNode => {
-  if (!strings[0] && values.length) {
-    return document.createElement('div');
-  }
-
-  let str = strings[0];
-  for (let i = 0; i < values.length; i++) {
-    str += SUBSTITUTION_INDEX + i + ':' + strings[i + 1];
+const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement | DocumentFragment | ChildNode => {
+  if (!strings[0] && args.length) {
+    throw new Error('Failed To Parse');
   }
 
   let template = document.createElement('template');
-  template.innerHTML = str;
+  template.innerHTML = strings
+    .map((str, index) => {
+      const argsString = args[index] ? DIRTY_PREFIX + index + ':' : '';
+      return `${str}${argsString}`;
+    })
+    .join('');
 
-  // console.log(template.outerHTML);
-  /**
-   * Replace a string with substitution placeholders with its substitution values.
-   * @private
-   *
-   * @param {string} match - Matched substitution placeholder.
-   * @param {string} index - Substitution placeholder index.
-   */
   function replaceSubstitution(match: string, index: string) {
-    return values[parseInt(index, 10)];
+    return args[parseInt(index, 10)];
+  }
+
+  function replaceAttribute(name: string, value: any, element: HTMLElement) {
+    if (typeof value === 'function') {
+      element.addEventListener(name.replace('on', '').toLowerCase(), value);
+      element.removeAttribute(name);
+    } else if (typeof value === 'string') {
+      element.setAttribute(name, value);
+    }
   }
 
   let walker = document.createNodeIterator(template.content, NodeFilter.SHOW_ALL);
   let node;
   while ((node = walker.nextNode())) {
-    if (node.nodeType === 3 && node.nodeValue?.includes(SUBSTITUTION_INDEX)) {
-      node.nodeValue = node.nodeValue.replace(SUBSTITUTION_REGEX, replaceSubstitution);
+    if (node.nodeType === 3 && node.nodeValue?.includes(DIRTY_PREFIX)) {
+      node.nodeValue = node.nodeValue.replace(DIRTY_REGEX, replaceSubstitution);
       continue;
     }
 
-    const element = <HTMLElement>node;
+    node = <HTMLElement>node;
 
-    let attributes: Attr[] = [];
-    if (element.attributes) {
-      attributes = Array.from(element.attributes);
-    }
+    let attributes: Attr[] = Array.from(node.attributes ?? []);
 
-    for (let i = 0; i < attributes.length; i++) {
-      let attribute = attributes[i];
-      let { name, value } = attribute;
+    for (let { name, value } of attributes) {
+      if (name && value.includes(DIRTY_PREFIX)) {
+        const match = DIRTY_REGEX.exec(value);
+        if (!match) continue;
+        value = args[parseInt(match[1], 10)];
 
-      if (name && value.includes(SUBSTITUTION_INDEX)) {
-        const match = SUBSTITUTION_REGEX.exec(value);
-        if (match) {
-          value = values[parseInt(match[1], 10)];
-          if (typeof value === 'function') {
-            element.addEventListener(name.replace('on', '').toLowerCase(), value);
-            element.removeAttribute(name);
-          } else if (typeof value === 'string') {
-            element.setAttribute(name, value);
-          }
-        }
+        replaceAttribute(name, value, node);
       }
     }
   }
