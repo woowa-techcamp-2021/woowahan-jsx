@@ -6,14 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/woowa-techcamp-2021/woowahan-jsx.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/woowa-techcamp-2021/woowahan-jsx.git",
+  "author": "cothis <minho1030@naver.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/woowa-techcamp-2021/woowahan-jsx/issues"
   },
-  "homepage": "https://github.com/woowa-techcamp-2021/woowahan-jsx#readme"
+  "homepage": "https://github.com/woowa-techcamp-2021/woowahan-jsx#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  }
 }
