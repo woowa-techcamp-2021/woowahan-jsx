@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/woowa-techcamp-2021/woowahan-jsx#readme",
   "devDependencies": {
-    "parcel": "^2.0.0-beta.2"
+    "parcel": "^2.0.0-nightly.776"
   },
   "dependencies": {
     "typescript": "^4.3.5"
