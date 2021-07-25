@@ -1,6 +1,7 @@
 const DIRTY_PREFIX = 'dirtyindex:'; // tag names are always all lowercase
 const DIRTY_REGEX = /dirtyindex:(\d+):/;
 const DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
+const RADIX = 10;
 
 const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement | DocumentFragment | ChildNode => {
   if (!strings[0] && args.length) {
@@ -16,7 +17,7 @@ const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement | Docu
     .join('');
 
   function replaceSubstitution(match: string, index: string) {
-    return args[parseInt(index, 10)];
+    return args[parseInt(index, RADIX)];
   }
 
   function replaceAttribute(name: string, value: any, element: HTMLElement) {
@@ -31,7 +32,7 @@ const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement | Docu
   let walker = document.createNodeIterator(template.content, NodeFilter.SHOW_ALL);
   let node;
   while ((node = walker.nextNode())) {
-    if (node.nodeType === 3 && node.nodeValue?.includes(DIRTY_PREFIX)) {
+    if (node.nodeType === Node.TEXT_NODE && node.nodeValue?.includes(DIRTY_PREFIX)) {
       node.nodeValue = node.nodeValue.replace(DIRTY_REGEX_G, replaceSubstitution);
       continue;
     }
@@ -44,7 +45,7 @@ const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement | Docu
       if (name && value.includes(DIRTY_PREFIX)) {
         const match = DIRTY_REGEX.exec(value);
         if (!match) continue;
-        value = args[parseInt(match[1], 10)];
+        value = args[parseInt(match[1], RADIX)];
 
         replaceAttribute(name, value, node);
       }
