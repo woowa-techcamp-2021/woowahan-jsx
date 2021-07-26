@@ -64,12 +64,12 @@ const html = (
     const texts = node.nodeValue.split(DIRTY_SEPERATOR_REGEX_G);
     const doms = texts.map(text => {
       const dirtyIndex = DIRTY_REGEX.exec(text)?.[1];
-
       if (!dirtyIndex) return buildDocumentFragmentWith(text);
 
       const arg = args[Number(dirtyIndex)];
-      if (arg instanceof DocumentFragment) return arg;
-      else return buildDocumentFragmentWith(arg);
+      if (arg instanceof Node) return arg;
+
+      return buildDocumentFragmentWith(arg);
     });
 
     for (const dom of doms) {

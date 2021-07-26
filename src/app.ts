@@ -11,6 +11,8 @@ const setCounter = (val: number) => {
 };
 
 const containerClassName = 'counter-wrapper';
+const $dom = document.createElement('div');
+$dom.appendChild(document.createTextNode('이것은 외부에서 만든 Div'));
 
 function render() {
   const $app = document.querySelector('#app');
@@ -63,6 +65,7 @@ function render() {
           </div>
         `}
       </div>`}
+      ${$dom}
     </div>
   `;
   if ($app) {
