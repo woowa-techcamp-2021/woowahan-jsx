@@ -16,7 +16,8 @@ function render() {
   const $app = document.querySelector('#app');
   const myComponent = html`
     <div class="${containerClassName}">
-      <img src="${baemin}" alt="woowa-img" />
+      hello ${html` <img src="${baemin}" alt="woowa-img" /> `} hi
+      ${html` <img src="${baemin}" alt="woowa-img" /> `} bye
       <div>
         <button
           class="btn"

@@ -1,6 +1,7 @@
 const DIRTY_PREFIX = 'dirtyindex:'; // tag names are always all lowercase
 const DIRTY_REGEX = /dirtyindex:(\d+):/;
 const DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
+const DIRTY_SEPERATOR_REGEX_G = /(dirtyindex:\d+:)/g;
 const RADIX = 10;
 
 /**
@@ -28,17 +29,22 @@ const html = (
 
   function replaceSubstitution(match: string, index: string) {
     const replacement = args[Number(index)];
-    return replacement;
-    // if (typeof replacement === 'string') {
-    //   return replacement;
-    // } else if (replacement.constructor.name === 'DocumentFragment') {
-    //   console.log(replacement);
-    //   return '';
-    // } else if (typeof replacement === 'number') {
-    //   return `${replacement}`;
-    // }
-    // console.log(replacement.constructor.name);
-    // return '';
+    if (typeof replacement === 'string') {
+      return replacement;
+    } else if (typeof replacement === 'number') {
+      return `${replacement}`;
+    }
+    return '';
+  }
+
+  function domifyText(text: string, index: string) {
+    const replacement = args[Number(index)];
+    if (replacement instanceof DocumentFragment) {
+      return replacement;
+    } else if (typeof replacement === 'string') {
+      const $text = document.createTextNode(text);
+      return $text;
+    }
   }
 
   function replaceAttribute(name: string, value: any, element: HTMLElement) {
@@ -65,10 +71,31 @@ const html = (
       node.nodeType === Node.TEXT_NODE &&
       node.nodeValue?.includes(DIRTY_PREFIX)
     ) {
-      node.nodeValue = node.nodeValue.replace(
-        DIRTY_REGEX_G,
-        replaceSubstitution,
-      );
+      const texts = node.nodeValue.split(DIRTY_SEPERATOR_REGEX_G);
+      const doms: DocumentFragment[] = [];
+      texts.forEach(text => {
+        if (!text.includes(DIRTY_PREFIX)) {
+          const template = document.createElement('template');
+          template.content.textContent = `${text}`;
+          doms.push(template.content);
+        } else {
+          const index = DIRTY_REGEX.exec(text)?.[1];
+          if (index) {
+            const $dom = args[Number(index)];
+            if ($dom instanceof DocumentFragment) doms.push($dom);
+            else {
+              const template = document.createElement('template');
+              template.content.textContent = `${$dom}`;
+              doms.push(template.content);
+            }
+          }
+        }
+      });
+
+      for (const dom of doms) {
+        node.parentNode?.insertBefore(dom, node);
+      }
+      node.nodeValue = '';
       continue;
     }
 
