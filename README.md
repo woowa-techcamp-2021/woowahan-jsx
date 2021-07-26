@@ -54,7 +54,7 @@ function render() {
 render();
 ```
 
-https://user-images.githubusercontent.com/13645032/126921683-b2296c81-57b9-4524-bfe5-9c1f7a9a386d.mov
+![counter example](https://user-images.githubusercontent.com/13645032/126922790-edc67f4a-992e-4cb3-a178-28e737796c9e.gif)
 
 ## Install
 
