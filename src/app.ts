@@ -1,18 +1,47 @@
 import html from './jsx';
+import baemin from 'url:./jiayou.gif';
 
-const hello = 'hello';
-const world = 'world';
+const state = {
+  counter: 0,
+};
 
-const myComponent = html`
-  <div
-    class="hi ${hello} world"
-    onClick=${() => {
-      alert(hello);
-    }}
-  >
-    <span>${hello} ${world}</span>
-    <span></span>
-  </div>
-`;
+const setCounter = (val: number) => {
+  state.counter = val;
+  render();
+};
 
-document.body.appendChild(myComponent);
+const containerClassName = 'counter-wrapper';
+
+function render() {
+  const $app = document.querySelector('#app');
+  const myComponent = html`
+    <div class="${containerClassName}">
+      <img src="${baemin}" alt="woowa-img" />
+      <div>
+        <button
+          class="btn"
+          onClick=${() => {
+            setCounter(state.counter - 1);
+          }}
+        >
+          -
+        </button>
+        <span>${state.counter}</span>
+        <button
+          class="btn"
+          onClick=${() => {
+            setCounter(state.counter + 1);
+          }}
+        >
+          +
+        </button>
+      </div>
+    </div>
+  `;
+  if ($app) {
+    $app.innerHTML = '';
+    $app.appendChild(myComponent);
+  }
+}
+
+render();
