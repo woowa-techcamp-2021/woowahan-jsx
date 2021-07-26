@@ -31,20 +31,20 @@ function render() {
       <button
         class="btn"
         onClick=${() => {
-          setCounter(state.counter + 1);
-        }}
-      >
-        +
-      </button>
-      <button
-        class="btn"
-        onClick=${() => {
           setCounter(state.counter - 1);
         }}
       >
         -
       </button>
       <span>${state.counter}</span>
+      <button
+        class="btn"
+        onClick=${() => {
+          setCounter(state.counter + 1);
+        }}
+      >
+        +
+      </button>
     </div>
   `;
   $app.innerHTML = '';
