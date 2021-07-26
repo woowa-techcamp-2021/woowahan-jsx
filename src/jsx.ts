@@ -2,7 +2,6 @@ const DIRTY_PREFIX = 'dirtyindex:'; // tag names are always all lowercase
 const DIRTY_REGEX = /dirtyindex:(\d+):/;
 const DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
 const DIRTY_SEPERATOR_REGEX_G = /(dirtyindex:\d+:)/g;
-const RADIX = 10;
 
 /**
  * 빠르게 동작하는 DOM 객체인 DocumentFragment를 리턴합니다.
