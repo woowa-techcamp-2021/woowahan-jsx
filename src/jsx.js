@@ -4,6 +4,13 @@ var DIRTY_PREFIX = 'dirtyindex:'; // tag names are always all lowercase
 var DIRTY_REGEX = /dirtyindex:(\d+):/;
 var DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
 var RADIX = 10;
+/**
+ * 빠르게 동작하는 DOM 객체인 DocumentFragment를 리턴합니다.
+ * DocumentFragment는 appendChild 등의 함수를 통해서 다른곳으로 이동하면 자기자신을 잃습니다.
+ * 속도를 포기하고 자기 참조를 유지하고 싶으면 함수를 일부 수정해서 template 대신 다른 태그를 사용해서 구현하세요.
+ * https://coderwall.com/p/o9ws2g/why-you-should-always-append-dom-elements-using-documentfragments
+ * @returns {DocumentFragment}
+ */
 var html = function (strings) {
   var _a, _b;
   var args = [];
