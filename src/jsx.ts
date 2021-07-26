@@ -25,7 +25,9 @@ const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement | Docu
       element.addEventListener(name.replace('on', '').toLowerCase(), value);
       element.removeAttribute(name);
     } else if (typeof value === 'string') {
-      element.setAttribute(name, value);
+      const attribute = element.getAttribute(name);
+      const replaced_attr = attribute?.replace(DIRTY_REGEX_G, replaceSubstitution);
+      element.setAttribute(name, replaced_attr ?? '');
     }
   }
 

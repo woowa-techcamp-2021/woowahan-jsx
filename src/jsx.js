@@ -28,7 +28,9 @@ var html = function (strings) {
       element.addEventListener(name.replace('on', '').toLowerCase(), value);
       element.removeAttribute(name);
     } else if (typeof value === 'string') {
-      element.setAttribute(name, value);
+      var attribute = element.getAttribute(name);
+      var replaced_attr = attribute === null || attribute === void 0 ? void 0 : attribute.replace(DIRTY_REGEX_G, replaceSubstitution);
+      element.setAttribute(name, replaced_attr !== null && replaced_attr !== void 0 ? replaced_attr : '');
     }
   }
   var walker = document.createNodeIterator(template.content, NodeFilter.SHOW_ALL);

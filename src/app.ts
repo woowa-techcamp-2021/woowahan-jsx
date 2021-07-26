@@ -5,7 +5,7 @@ const world = 'world';
 
 const myComponent = html`
   <div
-    class="${hello}"
+    class="hi ${hello} world"
     onClick=${() => {
       alert(hello);
     }}
