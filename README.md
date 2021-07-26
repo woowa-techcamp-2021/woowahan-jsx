@@ -10,6 +10,8 @@ Prettier로 포매팅이 자동으로 됩니다.
 
 ## Example
 
+https://user-images.githubusercontent.com/13645032/126921683-b2296c81-57b9-4524-bfe5-9c1f7a9a386d.mov
+
 ```ts
 import html from './src/jsx';
 
