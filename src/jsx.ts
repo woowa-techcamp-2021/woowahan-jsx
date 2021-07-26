@@ -10,7 +10,10 @@ const RADIX = 10;
  * https://coderwall.com/p/o9ws2g/why-you-should-always-append-dom-elements-using-documentfragments
  * @returns {DocumentFragment}
  */
-const html = (strings: TemplateStringsArray, ...args: any[]): DocumentFragment => {
+const html = (
+  strings: TemplateStringsArray,
+  ...args: any[]
+): DocumentFragment => {
   if (!strings[0] && args.length) {
     throw new Error('Failed To Parse');
   }
@@ -18,13 +21,24 @@ const html = (strings: TemplateStringsArray, ...args: any[]): DocumentFragment =
   let template = document.createElement('template');
   template.innerHTML = strings
     .map((str, index) => {
-      const argsString = args[index] ? DIRTY_PREFIX + index + ':' : '';
+      const argsString = args.length > index ? `${DIRTY_PREFIX}${index}:` : '';
       return `${str}${argsString}`;
     })
     .join('');
 
   function replaceSubstitution(match: string, index: string) {
-    return args[parseInt(index, RADIX)];
+    const replacement = args[Number(index)];
+    return replacement;
+    // if (typeof replacement === 'string') {
+    //   return replacement;
+    // } else if (replacement.constructor.name === 'DocumentFragment') {
+    //   console.log(replacement);
+    //   return '';
+    // } else if (typeof replacement === 'number') {
+    //   return `${replacement}`;
+    // }
+    // console.log(replacement.constructor.name);
+    // return '';
   }
 
   function replaceAttribute(name: string, value: any, element: HTMLElement) {
@@ -33,16 +47,28 @@ const html = (strings: TemplateStringsArray, ...args: any[]): DocumentFragment =
       element.removeAttribute(name);
     } else if (typeof value === 'string') {
       const attribute = element.getAttribute(name);
-      const replaced_attr = attribute?.replace(DIRTY_REGEX_G, replaceSubstitution);
+      const replaced_attr = attribute?.replace(
+        DIRTY_REGEX_G,
+        replaceSubstitution,
+      );
       element.setAttribute(name, replaced_attr ?? '');
     }
   }
 
-  let walker = document.createNodeIterator(template.content, NodeFilter.SHOW_ALL);
+  let walker = document.createNodeIterator(
+    template.content,
+    NodeFilter.SHOW_ALL,
+  );
   let node;
   while ((node = walker.nextNode())) {
-    if (node.nodeType === Node.TEXT_NODE && node.nodeValue?.includes(DIRTY_PREFIX)) {
-      node.nodeValue = node.nodeValue.replace(DIRTY_REGEX_G, replaceSubstitution);
+    if (
+      node.nodeType === Node.TEXT_NODE &&
+      node.nodeValue?.includes(DIRTY_PREFIX)
+    ) {
+      node.nodeValue = node.nodeValue.replace(
+        DIRTY_REGEX_G,
+        replaceSubstitution,
+      );
       continue;
     }
 
@@ -54,7 +80,7 @@ const html = (strings: TemplateStringsArray, ...args: any[]): DocumentFragment =
       if (name && value.includes(DIRTY_PREFIX)) {
         const match = DIRTY_REGEX.exec(value);
         if (!match) continue;
-        value = args[parseInt(match[1], RADIX)];
+        value = args[Number(match[1])];
 
         replaceAttribute(name, value, node);
       }
