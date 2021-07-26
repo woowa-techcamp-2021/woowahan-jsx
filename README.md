@@ -8,6 +8,8 @@ Yet Another Simple JSX using tagged template
 
 Prettier로 포매팅이 자동으로 됩니다.
 
+child Component도 지원 합니다! ${} 안에다가 DOM Object 넣으면 렌더링 돼요!
+
 ## Example
 
 ```ts

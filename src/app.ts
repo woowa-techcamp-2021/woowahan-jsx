@@ -11,12 +11,24 @@ const setCounter = (val: number) => {
 };
 
 const containerClassName = 'counter-wrapper';
+const $dom = document.createElement('div');
+$dom.appendChild(document.createTextNode('이것은 외부에서 만든 Div'));
 
 function render() {
   const $app = document.querySelector('#app');
   const myComponent = html`
     <div class="${containerClassName}">
-      <img src="${baemin}" alt="woowa-img" />
+      hello
+      ${html`
+        <img
+          src="${baemin}"
+          alt="woowa-img"
+          onClick=${() => {
+            alert('hello');
+          }}
+        />
+      `}
+      hi ${html` <img src="${baemin}" alt="woowa-img" /> `} bye
       <div>
         <button
           class="btn"
@@ -36,6 +48,24 @@ function render() {
           +
         </button>
       </div>
+      ${html` <div>
+        <h1>이거도 나오면 대박인데요?</h1>
+        ${html`
+          <div>
+            여기가 2중인가요?
+            ${html`
+              <div>
+                여기가 3중인가요?
+                <input
+                  type="text"
+                  onInput=${(e: any) => console.log(e.target.value)}
+                />
+              </div>
+            `}
+          </div>
+        `}
+      </div>`}
+      ${$dom}
     </div>
   `;
   if ($app) {
