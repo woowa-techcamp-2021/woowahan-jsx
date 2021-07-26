@@ -37,16 +37,6 @@ const html = (
     return '';
   }
 
-  function domifyText(text: string, index: string) {
-    const replacement = args[Number(index)];
-    if (replacement instanceof DocumentFragment) {
-      return replacement;
-    } else if (typeof replacement === 'string') {
-      const $text = document.createTextNode(text);
-      return $text;
-    }
-  }
-
   function replaceAttribute(name: string, value: any, element: HTMLElement) {
     if (typeof value === 'function') {
       element.addEventListener(name.replace('on', '').toLowerCase(), value);
@@ -61,6 +51,33 @@ const html = (
     }
   }
 
+  function buildDocumentFragmentWith(str: string) {
+    const df = document.createDocumentFragment();
+    df.appendChild(document.createTextNode(str));
+    return df;
+  }
+
+  function handleTextNode(node: Node) {
+    if (node.nodeType !== Node.TEXT_NODE) return;
+    if (!node.nodeValue?.includes(DIRTY_PREFIX)) return;
+
+    const texts = node.nodeValue.split(DIRTY_SEPERATOR_REGEX_G);
+    const doms = texts.map(text => {
+      const dirtyIndex = DIRTY_REGEX.exec(text)?.[1];
+
+      if (!dirtyIndex) return buildDocumentFragmentWith(text);
+
+      const arg = args[Number(dirtyIndex)];
+      if (arg instanceof DocumentFragment) return arg;
+      else return buildDocumentFragmentWith(arg);
+    });
+
+    for (const dom of doms) {
+      node.parentNode?.insertBefore(dom, node);
+    }
+    node.nodeValue = '';
+  }
+
   let walker = document.createNodeIterator(
     template.content,
     NodeFilter.SHOW_ALL,
@@ -71,31 +88,7 @@ const html = (
       node.nodeType === Node.TEXT_NODE &&
       node.nodeValue?.includes(DIRTY_PREFIX)
     ) {
-      const texts = node.nodeValue.split(DIRTY_SEPERATOR_REGEX_G);
-      const doms: DocumentFragment[] = [];
-      texts.forEach(text => {
-        if (!text.includes(DIRTY_PREFIX)) {
-          const template = document.createElement('template');
-          template.content.textContent = `${text}`;
-          doms.push(template.content);
-        } else {
-          const index = DIRTY_REGEX.exec(text)?.[1];
-          if (index) {
-            const $dom = args[Number(index)];
-            if ($dom instanceof DocumentFragment) doms.push($dom);
-            else {
-              const template = document.createElement('template');
-              template.content.textContent = `${$dom}`;
-              doms.push(template.content);
-            }
-          }
-        }
-      });
-
-      for (const dom of doms) {
-        node.parentNode?.insertBefore(dom, node);
-      }
-      node.nodeValue = '';
+      handleTextNode(node);
       continue;
     }
 
