@@ -31,20 +31,20 @@ function render() {
       <button
         class="btn"
         onClick=${() => {
-          setCounter(state.counter + 1);
-        }}
-      >
-        +
-      </button>
-      <button
-        class="btn"
-        onClick=${() => {
           setCounter(state.counter - 1);
         }}
       >
         -
       </button>
       <span>${state.counter}</span>
+      <button
+        class="btn"
+        onClick=${() => {
+          setCounter(state.counter + 1);
+        }}
+      >
+        +
+      </button>
     </div>
   `;
   $app.innerHTML = '';
@@ -53,6 +53,8 @@ function render() {
 
 render();
 ```
+
+https://user-images.githubusercontent.com/13645032/126921683-b2296c81-57b9-4524-bfe5-9c1f7a9a386d.mov
 
 ## Install
 

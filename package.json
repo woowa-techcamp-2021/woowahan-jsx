@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/woowa-techcamp-2021/woowahan-jsx#readme",
   "devDependencies": {
+    "@parcel/transformer-image": "2.0.0-nightly.2400",
     "parcel": "^2.0.0-nightly.776"
   },
   "dependencies": {
