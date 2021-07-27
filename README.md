@@ -61,7 +61,7 @@ function render() {
 render();
 ```
 
-![counter example](https://user-images.githubusercontent.com/13645032/126922790-edc67f4a-992e-4cb3-a178-28e737796c9e.gif)
+![counter](https://user-images.githubusercontent.com/13645032/127169158-e832a11c-1624-44b5-9f94-e2b38312facc.gif)
 
 ## Install
 
