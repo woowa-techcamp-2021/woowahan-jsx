@@ -5,11 +5,10 @@ var DIRTY_REGEX = /dirtyindex:(\d+):/;
 var DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
 var DIRTY_SEPERATOR_REGEX_G = /(dirtyindex:\d+:)/g;
 /**
- * DOM Element 를 리턴합니다.
- * Element는 Node를 상속받은 클래스고
- * HTMLElement HTMLDivElement등은 Element를 상속받아서 구현합니다.
+ * DOM HTMLElement 를 리턴합니다.
+ * HTMLElement Node를 상속받은 클래스입니다.
  *
- * @returns {Element}
+ * @returns {HTMLElement}
  */
 var html = function (strings) {
   var _a, _b, _c;
@@ -77,6 +76,13 @@ var html = function (strings) {
       if (!dirtyIndex) return buildDocumentFragmentWith(text);
       var arg = args[Number(dirtyIndex)];
       if (arg instanceof Node) return arg;
+      if (arg instanceof Array) {
+        var df_1 = document.createDocumentFragment();
+        arg.forEach(function ($el) {
+          return df_1.appendChild($el);
+        });
+        return df_1;
+      }
       return buildDocumentFragmentWith(arg);
     });
     for (var _i = 0, doms_1 = doms; _i < doms_1.length; _i++) {

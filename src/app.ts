@@ -19,15 +19,26 @@ function render() {
   const myComponent = html`
     <div class="${containerClassName}">
       hello
-      ${html`
-        <img
-          src="${baemin}"
-          alt="woowa-img"
-          onClick=${() => {
-            alert('hello');
-          }}
-        />
-      `}
+      ${[
+        html`
+          <img
+            src="${baemin}"
+            alt="woowa-img"
+            onClick=${() => {
+              alert('hello');
+            }}
+          />
+        `,
+        html`
+          <img
+            src="${baemin}"
+            alt="woowa-img"
+            onClick=${() => {
+              alert('hello');
+            }}
+          />
+        `,
+      ]}
       hi ${html` <img src="${baemin}" alt="woowa-img" /> `} bye
       <div>
         <button
@@ -48,6 +59,7 @@ function render() {
           +
         </button>
       </div>
+      <!-- 
       ${html` <div>
         <h1>이거도 나오면 대박인데요?</h1>
         ${html`
@@ -65,6 +77,7 @@ function render() {
           </div>
         `}
       </div>`}
+      -->
       ${$dom}
     </div>
   `;
