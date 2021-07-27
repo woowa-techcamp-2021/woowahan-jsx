@@ -5,14 +5,14 @@ var DIRTY_REGEX = /dirtyindex:(\d+):/;
 var DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
 var DIRTY_SEPERATOR_REGEX_G = /(dirtyindex:\d+:)/g;
 /**
- * 빠르게 동작하는 DOM 객체인 DocumentFragment를 리턴합니다.
- * DocumentFragment는 appendChild 등의 함수를 통해서 다른곳으로 이동하면 자기자신을 잃습니다.
- * 속도를 포기하고 자기 참조를 유지하고 싶으면 함수를 일부 수정해서 template 대신 다른 태그를 사용해서 구현하세요.
- * https://coderwall.com/p/o9ws2g/why-you-should-always-append-dom-elements-using-documentfragments
- * @returns {DocumentFragment}
+ * DOM Element 를 리턴합니다.
+ * Element는 Node를 상속받은 클래스고
+ * HTMLElement HTMLDivElement등은 Element를 상속받아서 구현합니다.
+ *
+ * @returns {Element}
  */
 var html = function (strings) {
-  var _a, _b;
+  var _a, _b, _c;
   var args = [];
   for (var _i = 1; _i < arguments.length; _i++) {
     args[_i - 1] = arguments[_i];
@@ -20,7 +20,7 @@ var html = function (strings) {
   if (!strings[0] && args.length) {
     throw new Error('Failed To Parse');
   }
-  var template = document.createElement('template');
+  var template = document.createElement('frame');
   template.innerHTML = strings
     .map(function (str, index) {
       var argsString =
@@ -87,10 +87,7 @@ var html = function (strings) {
     }
     node.nodeValue = '';
   }
-  var walker = document.createNodeIterator(
-    template.content,
-    NodeFilter.SHOW_ALL,
-  );
+  var walker = document.createNodeIterator(template, NodeFilter.SHOW_ALL);
   var node;
   while ((node = walker.nextNode())) {
     if (
@@ -107,13 +104,13 @@ var html = function (strings) {
       (_b = node.attributes) !== null && _b !== void 0 ? _b : [],
     );
     for (
-      var _c = 0, attributes_1 = attributes;
-      _c < attributes_1.length;
-      _c++
+      var _d = 0, attributes_1 = attributes;
+      _d < attributes_1.length;
+      _d++
     ) {
-      var _d = attributes_1[_c],
-        name_1 = _d.name,
-        value = _d.value;
+      var _e = attributes_1[_d],
+        name_1 = _e.name,
+        value = _e.value;
       if (name_1 && value.includes(DIRTY_PREFIX)) {
         var match = DIRTY_REGEX.exec(value);
         if (!match) continue;
@@ -122,6 +119,8 @@ var html = function (strings) {
       }
     }
   }
-  return template.content;
+  return (_c = template.firstElementChild) !== null && _c !== void 0
+    ? _c
+    : template;
 };
 exports['default'] = html;

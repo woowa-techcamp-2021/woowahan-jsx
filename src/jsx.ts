@@ -4,21 +4,18 @@ const DIRTY_REGEX_G = /dirtyindex:(\d+):/g;
 const DIRTY_SEPERATOR_REGEX_G = /(dirtyindex:\d+:)/g;
 
 /**
- * 빠르게 동작하는 DOM 객체인 DocumentFragment를 리턴합니다.
- * DocumentFragment는 appendChild 등의 함수를 통해서 다른곳으로 이동하면 자기자신을 잃습니다.
- * 속도를 포기하고 자기 참조를 유지하고 싶으면 함수를 일부 수정해서 template 대신 다른 태그를 사용해서 구현하세요.
- * https://coderwall.com/p/o9ws2g/why-you-should-always-append-dom-elements-using-documentfragments
- * @returns {DocumentFragment}
+ * DOM Element 를 리턴합니다.
+ * Element는 Node를 상속받은 클래스고
+ * HTMLElement HTMLDivElement등은 Element를 상속받아서 구현합니다.
+ *
+ * @returns {Element}
  */
-const html = (
-  strings: TemplateStringsArray,
-  ...args: any[]
-): DocumentFragment => {
+const html = (strings: TemplateStringsArray, ...args: any[]): Element => {
   if (!strings[0] && args.length) {
     throw new Error('Failed To Parse');
   }
 
-  let template = document.createElement('template');
+  let template = document.createElement('frame');
   template.innerHTML = strings
     .map((str, index) => {
       const argsString = args.length > index ? `${DIRTY_PREFIX}${index}:` : '';
@@ -77,10 +74,7 @@ const html = (
     node.nodeValue = '';
   }
 
-  let walker = document.createNodeIterator(
-    template.content,
-    NodeFilter.SHOW_ALL,
-  );
+  let walker = document.createNodeIterator(template, NodeFilter.SHOW_ALL);
   let node;
   while ((node = walker.nextNode())) {
     if (
@@ -106,7 +100,7 @@ const html = (
     }
   }
 
-  return template.content;
+  return template.firstElementChild ?? template;
 };
 
 export default html;
