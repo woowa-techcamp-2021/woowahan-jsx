@@ -30,7 +30,7 @@ const containerClassName = 'counter-wrapper';
 
 function render() {
   const $app = document.querySelector('#app');
-  // myComponent는 Element 타입입니다.
+  // myComponent는 HTMLElement 타입입니다.
   const myComponent = html`
     <div class="${containerClassName}">
       <button
