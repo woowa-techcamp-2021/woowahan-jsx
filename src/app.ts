@@ -70,9 +70,7 @@ function render() {
   `;
   if ($app) {
     $app.innerHTML = '';
-    console.log(myComponent);
     $app.appendChild(myComponent);
-    console.log(myComponent);
   }
 }
 
