@@ -65,6 +65,6 @@ render();
 
 ## Install
 
-/src/jsx.ts를 copy & paste 해서 쓰세요!
+[타입스크립트 코드](./src/jsx.ts)를 copy & paste 해서 쓰세요!
 
-/src/jsx.js를 copy & paste 해서 쓰세요!
+[자바스크립트 코드](./src/jsx.js)를 copy & paste 해서 쓰세요!
