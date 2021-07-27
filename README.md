@@ -8,7 +8,7 @@ Prettier로 포매팅이 자동으로 됩니다.
 
 스트링뿐만 아니라 함수나 DOM도 ${}에 넘길 수 있어요!! ^0^
 
-onClick이나, onInput 같은 콜백 함수를 넘겨보세요. [예제](./examples/counter/app.ts)
+onClick이나, onInput 같은 콜백 함수를 넘겨보세요. [click 예제](./examples/counter/app.ts) [input 예제](./examples/input/app.ts)
 
 Child Component도 지원 합니다! ${} 안에다가 DOM Object 넣으면 렌더링 돼요! [예제](./examples/recursion/app.ts)
 
