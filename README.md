@@ -4,17 +4,15 @@ Yet Another Simple JSX using tagged template
 
 ## 장점
 
-스트링뿐만 아니라 함수나 객체도 ${}에 넘길 수 있어요!! ^0^
-
-onClick이나, onInput 같은 콜백 함수를 넘겨보세요.
-
 Prettier로 포매팅이 자동으로 됩니다.
 
-child Component도 지원 합니다! ${} 안에다가 DOM Object 넣으면 렌더링 돼요!
+스트링뿐만 아니라 함수나 DOM도 ${}에 넘길 수 있어요!! ^0^
 
-Supports List Of Child Component!!
+onClick이나, onInput 같은 콜백 함수를 넘겨보세요. [예제](./examples/counter/app.ts)
 
-Map 함수 써서 리액트 JSX 처럼 쓸 수 있어요.
+Child Component도 지원 합니다! ${} 안에다가 DOM Object 넣으면 렌더링 돼요! [예제](./examples/recursion/app.ts)
+
+Child Component List 됩니다. Map 함수 써서 리액트 JSX 처럼 쓸 수 있어요. [예제](./examples/dom-list/app.ts)
 
 ## Example
 

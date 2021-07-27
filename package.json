@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "counter": "parcel examples/counter/index.html",
     "recursion": "parcel examples/recursion/index.html",
+    "dom-list": "parcel examples/dom-list/index.html",
     "input": "parcel examples/input/index.html",
     "build": "parcel build examples/counter/index.html"
   },
