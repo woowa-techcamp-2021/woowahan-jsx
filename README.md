@@ -1,18 +1,10 @@
-# woowahan-jsx
+<h1 align="center"> 우아한 JSX </h1>
 
-Yet Another Simple JSX using tagged template
+<p align="center">Yet Another Simple JSX using tagged template</p>
 
-## 장점
+<p align="center"><b>언어의 한계가 곧 세계의 한계다</b> - Ludwig Wittgenstein</p>
 
-Prettier로 포매팅이 자동으로 됩니다.
-
-스트링뿐만 아니라 함수나 DOM도 ${}에 넘길 수 있어요!! ^0^
-
-onClick이나, onInput 같은 콜백 함수를 넘겨보세요. [click 예제](./examples/counter/app.ts), [input 예제](./examples/input/app.ts)
-
-Child Component도 지원 합니다! ${} 안에다가 DOM Object 넣으면 렌더링 돼요! [예제](./examples/recursion/app.ts)
-
-Child Component List 됩니다. Map 함수 써서 리액트 JSX 처럼 쓸 수 있어요. [예제](./examples/dom-list/app.ts)
+<p align="center"> 우아한 JSX가 <b>캠퍼들의 표현의 자유를 넓히고 세계를 넓히는데 도움이 되었으면 합니다</b> </p>
 
 ## Example
 
@@ -62,6 +54,20 @@ render();
 ```
 
 ![counter](https://user-images.githubusercontent.com/13645032/127169158-e832a11c-1624-44b5-9f94-e2b38312facc.gif)
+
+
+## 장점
+
+Prettier로 포매팅이 자동으로 됩니다.
+
+스트링뿐만 아니라 함수나 DOM도 ${}에 넘길 수 있어요!! ^0^
+
+onClick이나, onInput 같은 콜백 함수를 넘겨보세요. [click 예제](./examples/counter/app.ts), [input 예제](./examples/input/app.ts)
+
+Child Component도 지원 합니다! ${} 안에다가 DOM Object 넣으면 렌더링 돼요! [예제](./examples/recursion/app.ts)
+
+Child Component List 됩니다. Map 함수 써서 리액트 JSX 처럼 쓸 수 있어요. [예제](./examples/dom-list/app.ts)
+
 
 ## Install
 
