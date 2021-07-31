@@ -9,7 +9,7 @@
     "dom-list": "parcel examples/dom-list/index.html",
     "input": "parcel examples/input/index.html",
     "build": "parcel build examples/counter/index.html",
-    "build-js": "npx tsc ./src/jsx.ts && npx babel ./src/jsx.js -o ./src/jsx2.js"
+    "build-js": "npx tsc ./src/jsx.ts && npx babel ./src/jsx.js -o ./src/jsx-corejs2.js"
   },
   "alias": {
     "src": "./src"
