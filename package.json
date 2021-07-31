@@ -8,7 +8,8 @@
     "recursion": "parcel examples/recursion/index.html",
     "dom-list": "parcel examples/dom-list/index.html",
     "input": "parcel examples/input/index.html",
-    "build": "parcel build examples/counter/index.html"
+    "build": "parcel build examples/counter/index.html",
+    "build-js": "npx tsc ./src/jsx.ts && npx babel ./src/jsx.js -o ./src/jsx2.js"
   },
   "alias": {
     "src": "./src"
@@ -21,6 +22,8 @@
   },
   "homepage": "https://github.com/woowa-techcamp-2021/woowahan-jsx#readme",
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
     "@parcel/transformer-image": "2.0.0-nightly.2400",
     "parcel": "^2.0.0-nightly.776"
   },

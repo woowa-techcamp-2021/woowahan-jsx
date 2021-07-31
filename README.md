@@ -55,7 +55,6 @@ render();
 
 ![counter](https://user-images.githubusercontent.com/13645032/127169158-e832a11c-1624-44b5-9f94-e2b38312facc.gif)
 
-
 ## 장점
 
 Prettier로 포매팅이 자동으로 됩니다.
@@ -68,9 +67,10 @@ Child Component도 지원 합니다! ${} 안에다가 DOM Object 넣으면 렌�
 
 Child Component List 됩니다. Map 함수 써서 리액트 JSX 처럼 쓸 수 있어요. [예제](./examples/dom-list/app.ts)
 
-
 ## Install
 
 [타입스크립트 코드](./src/jsx.ts)를 copy & paste 해서 쓰세요!
 
-[자바스크립트 코드](./src/jsx.js)를 copy & paste 해서 쓰세요!
+[babel-6용 자바스크립트 코드](./src/jsx.js)를 copy & paste 해서 쓰세요!
+
+[babel-7용 자바스크립트 코드](./src/jsx-corejs2.js) copy & paste 해서 쓰세요
