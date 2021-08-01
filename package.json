@@ -1,6 +1,6 @@
 {
   "name": "woowahan-jsx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yet Another Simple JSX using tagged template",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -8,7 +8,8 @@
     "recursion": "parcel examples/recursion/index.html",
     "dom-list": "parcel examples/dom-list/index.html",
     "input": "parcel examples/input/index.html",
-    "build": "tsc"
+    "build": "tsc",
+    "deploy": "npm run build && npm publish"
   },
   "alias": {
     "src": "./src"
