@@ -1,7 +1,6 @@
 {
   "name": "woowahan-jsx",
-  "version": "1.1.0",
-  "browser": "./lib/index.js",
+  "version": "1.0.1",
   "description": "Yet Another Simple JSX using tagged template",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,14 +20,17 @@
     "윤민호 <minho1030@naver.com>",
     "Neo <neo@zillinks.com> (https://zillinks.com)"
   ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/jsx.module.js",
+  "types": "lib/jsx.d.ts",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/woowa-techcamp-2021/woowahan-jsx/issues"
   },
   "homepage": "https://github.com/woowa-techcamp-2021/woowahan-jsx#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "@parcel/transformer-image": "2.0.0-nightly.2400",
+    "parcel": "^2.0.0-nightly.776"
+  },
   "dependencies": {
     "typescript": "^4.3.5"
   },
