@@ -8,13 +8,19 @@
     "recursion": "parcel examples/recursion/index.html",
     "dom-list": "parcel examples/dom-list/index.html",
     "input": "parcel examples/input/index.html",
-    "build": "parcel build examples/counter/index.html"
+    "build": "tsc"
   },
   "alias": {
     "src": "./src"
   },
   "repository": "git+https://github.com/woowa-techcamp-2021/woowahan-jsx.git",
-  "author": "오인규, 윤민호",
+  "contributors": [
+    "gomjellie <gomjellie@gmail.com> (https://gomjellie.github.io/me)",
+    "윤민호 <minho1030@naver.com>",
+    "Neo <neo@zillinks.com> (https://zillinks.com)"
+  ],
+  "main": "lib/jsx.module.js",
+  "types": "lib/index.d.ts",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/woowa-techcamp-2021/woowahan-jsx/issues"
@@ -26,5 +32,8 @@
   },
   "dependencies": {
     "typescript": "^4.3.5"
-  }
+  },
+  "files": [
+    "lib"
+  ]
 }
