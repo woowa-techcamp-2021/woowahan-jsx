@@ -52,8 +52,9 @@ const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement => {
     }
   }
 
-  function buildDocumentFragmentWith(str: string) {
+  function buildDocumentFragmentWith(str?: string) {
     const df = document.createDocumentFragment();
+    if (!str) return df;
     df.appendChild(document.createTextNode(str));
     return df;
   }
