@@ -43,6 +43,12 @@ const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement => {
         replaceSubstitution,
       );
       element.setAttribute(name, replaced_attr ?? '');
+    } else if (typeof value === 'boolean') {
+      if (value === true) {
+        element.setAttribute(name, '');
+      } else {
+        element.removeAttribute(name);
+      }
     }
   }
 
