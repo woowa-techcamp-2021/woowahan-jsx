@@ -1,4 +1,4 @@
-import html from '../../src/jsx';
+import html from '../../src/index';
 import baemin from 'url:./jiayou.gif';
 
 const state = {

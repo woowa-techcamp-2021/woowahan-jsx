@@ -1,4 +1,4 @@
-import html from '../../src/jsx';
+import html from '../../src/index';
 import jiayou from 'url:./jiayou.gif';
 
 const state = {
@@ -15,7 +15,7 @@ const containerClassName = 'counter-wrapper';
 function render() {
   const $app = document.querySelector('#app');
   const myComponent = html`
-    <div class="${containerClassName}">
+    <div class="${containerClassName}" hidden=${false}>
       ${html` <img src="${jiayou}" alt="woowa-img" /> `}
       <div>
         <button

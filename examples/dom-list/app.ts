@@ -1,4 +1,4 @@
-import html from '../../src/jsx';
+import html from '../../src/index';
 import jiayou from 'url:./jiayou.gif';
 
 const containerClassName = 'dom-list-wrapper';
