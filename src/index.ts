@@ -36,7 +36,7 @@ const html = (strings: TemplateStringsArray, ...args: any[]): HTMLElement => {
     if (typeof value === 'function') {
       element.addEventListener(name.replace('on', '').toLowerCase(), value);
       element.removeAttribute(name);
-    } else if (typeof value === 'string') {
+    } else if (['string', 'number'].includes(typeof value)) {
       const attribute = element.getAttribute(name);
       const replaced_attr = attribute?.replace(
         DIRTY_REGEX_G,
