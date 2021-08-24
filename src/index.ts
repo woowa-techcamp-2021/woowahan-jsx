@@ -5,7 +5,7 @@ const DIRTY_SEPERATOR_REGEX_G = /(dirtyindex:\d+:)/g;
 
 /**
  * DOM HTMLElement 를 리턴합니다.
- * HTMLElement Node를 상속받은 클래스입니다.
+ * HTMLElement은 Node를 상속받은 클래스입니다.
  *
  * @returns {HTMLElement}
  */
