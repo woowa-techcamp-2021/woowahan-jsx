@@ -4,7 +4,7 @@
 
 <p align="center"><b>언어의 한계가 곧 세계의 한계다</b> - Ludwig Wittgenstein</p>
 
-<p align="center"> 우아한 JSX가 <b>캠퍼들의 표현의 자유를 넓히고 세계를 넓히는데 도움이 되었으면 합니다</b> </p>
+<p align="center"> 우아한 JSX가 <b>vanilla JS 프로그래머들의 표현의 자유를 넓히고 세계를 넓히는데 도움이 되었으면 합니다</b> </p>
 
 ## Example
 
